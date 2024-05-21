@@ -1,0 +1,9 @@
+.theme_dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}

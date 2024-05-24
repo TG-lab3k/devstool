@@ -1,10 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Timestamp convert</title>
-    </head>
-    <body>
-        <div id="root"></div>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间戳转换工具</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+</head>
+<body class="app app-theme-dark">
+    <div class="app-layout">
+        <div class="app-left-pane app-pane">
+            <div class="left-nav" theme="dark">
+                <div style="height: 80px;">
+                </div>
+                <a href="/" class="left-nav-item router-link-exact-active">
+                    <span>时间戳转换</span>
+                </a>
+            </div>
+        </div>
+        <div class="app-center-pane">
+            <div>
+                <div>
+                    <span>当前时间</span>
+                    <span class="title-text color-yellow-y1 current-timestamp"></span>
+                    <span class="colored-link">秒</span> 
+                </div>
+
+                <div>
+                    <div class="converter">时间戳转换</div>
+                    <div>
+                        <input class="flat-style-input timestamp-datetime-text" type="text" placeholder="秒/毫秒">
+                    </div>
+                    <div>
+                        <input class="flat-style-input timestamp-datetime-format" type="text" placeholder="格式">
+                    </div>
+                    <div>
+                        <input class="flat-style-input timestamp-datetime-timezones" list="timezones" placeholder="时区">
+                        <datalist id="timezones">
+                            <option value="GMT-12">(GMT-12:00)</option>
+                            <option value="GMT-11">(GMT-11:00) 萨摩亚中途岛</option>
+                            <option value="GMT-10">(GMT-10:00) 夏威夷</option>
+                            <option value="GMT-9">(GMT-9:00)</option>
+                            <option value="GMT-8">(GMT-8:00) 阿拉斯加</option>
+                            <option value="GMT-7">(GMT-7:00) 温哥华</option>
+                            <option value="GMT-6">(GMT-6:00) 山区时间（美国和加拿大）</option>
+                            <option value="GMT-6">(GMT-6:00) 墨西哥城</option>
+                            <option value="GMT-5">(GMT-5:00) 中部时间（美国和加拿大）</option>
+                            <option value="GMT-5">(GMT-5:00) 巴拿马</option>
+                            <option value="GMT-4">(GMT-4:00) 东部时间（美国和加拿大）</option>
+                            <option value="GMT-4">(GMT-4:00) 加拉加斯</option>
+                            <option value="GMT-3">(GMT-3:00) 圣保罗</option>
+                            <option value="GMT-3">(GMT-3:00) 大西洋时间（加拿大）</option>
+                            <option value="GMT-3">(GMT-3:00) 布宜诺斯艾利斯，乔治城</option>
+                            <option value="GMT-2">(GMT-2:00) 费尔南多-迪诺罗尼亚</option>
+                            <option value="GMT-1">(GMT-1:00) 格林兰岛</option>
+                            <option value="GMT+0">(GMT+0:00) 格林威治标准时间</option>
+                            <option value="GMT+0">(GMT+0:00) 世界标准时间UTC</option>
+                            <option value="GMT+0">(GMT+0:00) 雷克雅未克</option>
+                            <option value="GMT+1">(GMT+1:00) 都柏林</option>
+                            <option value="GMT+1">(GMT+1:00) 伦敦</option>
+                            <option value="GMT+1">(GMT+1:00) 里斯本</option>
+                            <option value="GMT+1">(GMT+1:00) 中非西部</option>
+                            <option value="GMT+1">(GMT+1:00) 阿尔及尔</option>
+                            <option value="GMT+1">(GMT+1:00) 突尼斯</option>
+                            <option value="GMT+2">(GMT+2:00) 哥本哈根</option>
+                            <option value="GMT+2">(GMT+2:00) 阿姆斯特丹，柏林，罗马，斯德哥尔摩，维也纳</option>
+                            <option value="GMT+2">(GMT+2:00) 罗马</option>
+                            <option value="GMT+2">(GMT+2:00) 斯德哥尔摩</option>
+                            <option value="GMT+2">(GMT+2:00) 维也纳</option>
+                            <option value="GMT+2">(GMT+2:00) 卢森堡</option>
+                            <option value="GMT+2">(GMT+2:00) 巴黎</option>
+                            <option value="GMT+2">(GMT+2:00) 苏黎世</option>
+                            <option value="GMT+2">(GMT+2:00) 马德里</option>
+                            <option value="GMT+2">(GMT+2:00) 华沙</option>
+                            <option value="GMT+3">(GMT+3:00) 雅典</option>
+                            <option value="GMT+3">(GMT+3:00) 大马士革</option>
+                            <option value="GMT+3">(GMT+3:00) 耶路撒冷</option>
+                            <option value="GMT+3">(GMT+3:00) 安曼</option>
+                            <option value="GMT+3">(GMT+3:00) 开罗</option>
+                            <option value="GMT+3">(GMT+3:00) 莫斯科</option>
+                            <option value="GMT+3">(GMT+3:00) 巴格达</option>
+                            <option value="GMT+3">(GMT+3:00) 科威特</option>
+                            <option value="GMT+3">(GMT+3:00) 卡塔尔</option>
+                            <option value="GMT+3">(GMT+3:00) 基辅</option>
+                            <option value="GMT+3">(GMT+3:30) 德黑兰</option>
+                            <option value="GMT+4">(GMT+4:00) 迪拜</option>
+                            <option value="GMT+4">(GMT+4:00) 巴库，第比利斯，叶里温</option>
+                            <option value="GMT+5">(GMT+5:00) 叶卡捷琳堡</option>
+                            <option value="GMT+5">(GMT+5:00) 阿拉木图</option>
+                            <option value="GMT+5.5">(GMT+5:30) 印度</option>
+                            <option value="GMT+5.5">(GMT+5:30) 孟买，加尔各答，新德里</option>
+                            <option value="GMT+5.5">(GMT+5:30) 科伦坡</option>
+                            <option value="GMT+6">(GMT+6:00) 达卡</option>
+                            <option value="GMT+6">(GMT+6:00) 阿斯塔纳，达卡</option>
+                            <option value="GMT+6.5">(GMT+6:30) 仰光</option>
+                            <option value="GMT+7">(GMT+7:00) 新西伯利亚</option>
+                            <option value="GMT+7">(GMT+7:00) 克拉斯诺亚尔斯克</option>
+                            <option value="GMT+7">(GMT+7:00) 曼谷</option>
+                            <option value="GMT+7">(GMT+7:00) 越南</option>
+                            <option value="GMT+7">(GMT+7:00) 雅加达</option>
+                            <option value="GMT+8">(GMT+8:00) 伊尔库次克，乌兰巴托</option>
+                            <option value="GMT+8">(GMT+8:00) 北京，上海</option>
+                            <option value="GMT+8">(GMT+8:00) 香港特别行政区</option>
+                            <option value="GMT+8">(GMT+8:00) 台北</option>
+                            <option value="GMT+8">(GMT+8:00) 吉隆坡</option>
+                            <option value="GMT+8">(GMT+8:00) 新加坡</option>
+                            <option value="GMT+8">(GMT+8:00) 珀斯</option>
+                            <option value="GMT+9">(GMT+9:00) 首尔</option>
+                            <option value="GMT+9">(GMT+9:00) 大阪，札幌，东京</option>
+                            <option value="GMT+10">(GMT+10:00) 符拉迪沃斯托克</option>
+                            <option value="GMT+10">(GMT+10:00) 关岛，莫尔斯比港</option>
+                            <option value="GMT+10">(GMT+10:00) 布里斯班</option>
+                            <option value="GMT+10">(GMT+10:00) 堪培拉，墨尔本，悉尼</option>
+                            <option value="GMT+11">(GMT+11:00) 所罗门群岛</option>
+                            <option value="GMT+11">(GMT+11:00) 新喀里多尼亚</option>
+                            <option value="GMT+12">(GMT+12:00) 堪察加</option>
+                            <option value="GMT+12">(GMT+12:00) 斐济群岛，马绍尔群岛</option>
+                            <option value="GMT+12">(GMT+12:00) 奥克兰，惠灵顿</option>
+                        </datalist>
+                    </div>
+                    <div>
+                        <button class="flat-style-button timestamp-datetime-convert">转换</button>
+                    </div>
+                    <div>
+                        <div class="timestamp-datetime-result"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div>获取时间戳</div>
+                    <div>
+                        <div>
+                            <input class="flat-style-input datetime-timestamp-text" type="text" placeholder="日期时间"> 
+                        </div>
+                        <div>
+                            <input class="flat-style-input datetime-timestamp-format"  type="text" placeholder="格式">
+                        </div>
+                        <div>
+                            <button class="flat-style-button datetime-timestamp-convert">转换</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">年</span>
+                            <span class="label">月</span>
+                            <span class="label">日</span>
+                            <span class="label">时(24小时)</span>
+                            <span class="label">分</span>
+                            <span class="label">秒</span>
+                        </div>
+
+                        <div class="line-group">
+                            <input type="text" placeholder="年" style="width: 40px;">
+                            <input type="text" placeholder="月" style="width: 40px;">
+                            <input type="text" placeholder="日" style="width: 40px;">
+                            <input type="text" placeholder="时(24小时)" style="width: 40px;">
+                            <input type="text" placeholder="分" style="width: 40px;">
+                            <input type="text" placeholder="秒" style="width: 40px;">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="datetime-timestamp-result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="app-right-pane">
+        </div>
+    </div>
+</body>
 </html>

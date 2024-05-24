@@ -26,9 +26,9 @@ body .app-layout{
 }
 
 .app-left-pane{
-    -ms-flex-preferred-size:105px;
-    flex-basis:105px;
-    min-width:105px;
+    -ms-flex-preferred-size:150px;
+    flex-basis:150px;
+    min-width:150px;
     display:-webkit-box;
     display:-ms-flexbox;
     display: flex;
@@ -133,6 +133,7 @@ body.app .app-main-container .app-block {
 
 body.app .app-main-container .app-display-result-board {
     font-size: 30px; 
+    height: 34px;
     color:rgb(255, 157, 0)
 }
 

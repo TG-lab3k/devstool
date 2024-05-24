@@ -4,9 +4,13 @@ import "./style_theme.css"
 const FORMAT_DEFAULT = 'YYYY-MM-DD HH:mm:ss';
 
 function updateCurrentTime(){
+    var currentTimeSpan = document.querySelector('.current-timestamp');
+    currentTimeSpan.innerText = getCurrentTimestampInSecond();
+}
+
+function getCurrentTimestampInSecond() {
     var currentTimeInMills = Date.now();
-    var currentTimeDiv = document.querySelector('.current-timestamp');
-    currentTimeDiv.innerHTML = parseInt(currentTimeInMills / 1000);
+    return parseInt(currentTimeInMills / 1000);
 }
 
 function launchUpdateCurrentTime() {
@@ -49,7 +53,6 @@ function convertMillisToGMT(millis, format, offset) {
 
 function convertGMTToMillis(datetime, format) {
     var momentObj = moment(datetime, format);
-    //momentObj.utcOffset(2);
     var millis = momentObj.unix();
     return millis;
 }
@@ -59,12 +62,20 @@ function convertTimestampToTime() {
     var formatInput = document.querySelector('.timestamp-datetime-format');
     var gmtInput = document.querySelector('.timestamp-datetime-timezones');
     var result = document.querySelector('.timestamp-datetime-result');
-    var timestampText = String(timestampInput.value);
-    if (timestampText.trim().length < 10) {
-        console.log('timestampText is null');
+    var timestampText = String(timestampInput.value).trim();
+    if(timestampText === ''){
         result.innerHTML = '';
         return;
     }
+
+    /*
+    const regexTimestamp = /^-?\d+$/;
+    if (!regexTimestamp.test(timestampText)) {
+        const currentTimestamp = getCurrentTimestampInSecond();
+        result.innerHTML = 'The correct timestamp:' + currentTimestamp;
+        return;
+    }
+    */
 
 
     var timestamp = Number(timestampText);
@@ -79,32 +90,35 @@ function convertTimestampToTime() {
     if (gmtText.trim() !== '') {
         utcOffset = parseGMTOffset(gmtText);
     } else {
-        gmtInput.value = getCurrentUtcOffset();
+        const utcOffsetStr = getCurrentUtcOffset();
+        const sign = utcOffsetStr.charAt(0);
+        const utc = parseInt(utcOffsetStr.substring(1));
+        gmtInput.value = 'GMT' + sign + utc;
     }
 
     if (utcOffset === 0 || utcOffset === NaN) {
         utcOffset = getCurrentUtcOffset();
     }
-    console.log('utcOffset', utcOffset);
     var formattedTime = convertMillisToGMT(timestamp, formatText, utcOffset);
     result.innerHTML = formattedTime;
 }
 
 function convertTimeToTimestamp() {
     var datetimeInput = document.querySelector('.datetime-timestamp-text');
-    var datetimeText = String(datetimeInput.value);
-    if (datetimeText.trim() === '') {
+    var resultDiv = document.querySelector('.datetime-timestamp-result');
+    var datetimeText = String(datetimeInput.value).trim();
+    if (datetimeText === '') {
+        resultDiv.innerHTML = '';
         return;
     }
 
     var formatInput = document.querySelector('.datetime-timestamp-format');
-    var formatText = String(formatInput.value);
-    if (formatText.trim() === '') {
+    var formatText = String(formatInput.value).trim();
+    if (formatText === '') {
+        formatInput.value = FORMAT_DEFAULT;
         formatText = FORMAT_DEFAULT;
     }
-
     var millis = convertGMTToMillis(datetimeText, formatText);
-    var resultDiv = document.querySelector('.datetime-timestamp-result');
     resultDiv.innerHTML = millis;
 }
 
@@ -117,6 +131,7 @@ function app() {
     bindingEvent('.timestamp-datetime-convert', 'click', convertTimestampToTime);
     bindingEvent('.timestamp-datetime-content', 'input', convertTimestampToTime);
     bindingEvent('.datetime-timestamp-convert', 'click', convertTimeToTimestamp);
+    bindingEvent('.datetime-timestamp-text', 'input', convertTimeToTimestamp);
     launchUpdateCurrentTime();
 }
 

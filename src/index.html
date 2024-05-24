@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>时间戳转换工具</title>
+    <title>时间戳转换</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
 </head>
 <body class="app app-theme-dark">
@@ -18,22 +18,22 @@
             </div>
         </div>
         <div class="app-center-pane">
-            <div>
-                <div>
+            <div class="app-main-container">
+                <div class="app-content-pane">
                     <span>当前时间</span>
                     <span class="title-text color-yellow-y1 current-timestamp"></span>
                     <span class="colored-link">秒</span> 
                 </div>
 
-                <div>
-                    <div class="converter">时间戳转换</div>
-                    <div>
-                        <input class="flat-style-input timestamp-datetime-text" type="text" placeholder="秒/毫秒">
+                <div  class="app-content-pane">
+                    <div class="converter app-block">时间戳转换</div>
+                    <div class="app-block">
+                        <input class="flat-style-input timestamp-datetime-content" type="text" placeholder="秒/毫秒">
                     </div>
-                    <div>
+                    <div class="app-block">
                         <input class="flat-style-input timestamp-datetime-format" type="text" placeholder="格式">
                     </div>
-                    <div>
+                    <div class="app-block">
                         <input class="flat-style-input timestamp-datetime-timezones" list="timezones" placeholder="时区">
                         <datalist id="timezones">
                             <option value="GMT-12">(GMT-12:00)</option>
@@ -118,28 +118,29 @@
                             <option value="GMT+12">(GMT+12:00) 奥克兰，惠灵顿</option>
                         </datalist>
                     </div>
-                    <div>
+                    <div class="app-block">
                         <button class="flat-style-button timestamp-datetime-convert">转换</button>
                     </div>
-                    <div>
-                        <div class="timestamp-datetime-result"></div>
+                    <div class="app-block">
+                        <div class="timestamp-datetime-result app-display-result-board"></div>
                     </div>
                 </div>
 
-                <div>
-                    <div>获取时间戳</div>
+                <div  class="app-content-pane"
+                >
+                    <div class="app-block">获取时间戳</div>
                     <div>
-                        <div>
+                        <div class="app-block">
                             <input class="flat-style-input datetime-timestamp-text" type="text" placeholder="日期时间"> 
                         </div>
-                        <div>
+                        <div class="app-block">
                             <input class="flat-style-input datetime-timestamp-format"  type="text" placeholder="格式">
                         </div>
-                        <div>
+                        <div class="app-block">
                             <button class="flat-style-button datetime-timestamp-convert">转换</button>
                         </div>
                     </div>
-                    <div>
+                    <div class="app-block">
                         <div>
                             <span class="label">年</span>
                             <span class="label">月</span>
@@ -158,13 +159,12 @@
                             <input type="text" placeholder="秒" style="width: 40px;">
                         </div>
                     </div>
-                    <div>
-                        <div class="datetime-timestamp-result"></div>
+                    <div class="app-block">
+                        <div class="datetime-timestamp-result app-display-result-board"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="app-right-pane">
         </div>
     </div>
 </body>

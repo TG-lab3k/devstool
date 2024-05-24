@@ -15,7 +15,7 @@ body.app .app-layout{
     align-content:stretch
 }
 
-.app-layout{
+.app-layout {
     -webkit-transition:right .5s;
     transition:right .5s;
 }
@@ -118,25 +118,22 @@ body.app .app-layout .app-center-pane{
 }
 
 body.app .app-main-container{
-    -webkit-box-flex:1;
-    -ms-flex:1 1 auto;
-    flex:1 1 auto;
-    display:-webkit-box;
-    display:-ms-flexbox;
-    display:flex;
-    height:0
+    height:100%;
+    padding-top: 40px;
+    padding-left: 60px;
 }
 
-body.app .app-main-container .app-content-panes{
-    -webkit-box-flex:1;
-    -ms-flex-positive:1;
-    flex-grow:1;
-    -ms-flex-preferred-size:0;
-    flex-basis:0;
-    display:-webkit-box;
-    display:-ms-flexbox;
-    display:flex;
-    min-width:0
+body.app .app-main-container .app-content-pane {
+    margin-bottom: 30px;
+}
+
+body.app .app-main-container .app-block {
+    padding-top: 8px;
+}
+
+body.app .app-main-container .app-display-result-board {
+    font-size: 30px; 
+    color:rgb(255, 157, 0)
 }
 
 body.app .app-main-container .app-main-pane,
@@ -165,7 +162,7 @@ body.app .app-main-container .app-main-pane .news-loader{
 }
 
 input.flat-style-input {
-  background-color:#333333;
+  background-color:#000;
   border: none; 
   border-bottom: 1px solid white; 
   padding: 5px; 

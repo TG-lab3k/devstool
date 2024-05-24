@@ -6,11 +6,12 @@ const FORMAT_DEFAULT = 'YYYY-MM-DD HH:mm:ss';
 function updateCurrentTime(){
     var currentTimeInMills = Date.now();
     var currentTimeDiv = document.querySelector('.current-timestamp');
-    currentTimeDiv.innerHTML = currentTimeInMills;
+    currentTimeDiv.innerHTML = parseInt(currentTimeInMills / 1000);
 }
 
 function launchUpdateCurrentTime() {
-    setInterval(updateCurrentTime, 500);
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 1000);
 }
 
 function convertTimestampToGMT(timestamp, offset) {
@@ -53,13 +54,15 @@ function convertGMTToMillis(datetime, format) {
     return millis;
 }
 
-function clickConvertMillisToGMT() {
-    var timestampInput = document.querySelector('.timestamp-datetime-text');
+function convertTimestampToTime() {
+    var timestampInput = document.querySelector('.timestamp-datetime-content');
     var formatInput = document.querySelector('.timestamp-datetime-format');
     var gmtInput = document.querySelector('.timestamp-datetime-timezones');
+    var result = document.querySelector('.timestamp-datetime-result');
     var timestampText = String(timestampInput.value);
-    if (timestampText.trim() === '') {
+    if (timestampText.trim().length < 10) {
         console.log('timestampText is null');
+        result.innerHTML = '';
         return;
     }
 
@@ -67,14 +70,16 @@ function clickConvertMillisToGMT() {
     var timestamp = Number(timestampText);
     var formatText = String(formatInput.value);
     if (formatText.trim() === '') {
+        formatInput.value = FORMAT_DEFAULT;
         formatText = FORMAT_DEFAULT;
     }
 
     var gmtText = String(gmtInput.value);
     var utcOffset = 0;
     if (gmtText.trim() !== '') {
-        console.log(gmtText);
         utcOffset = parseGMTOffset(gmtText);
+    } else {
+        gmtInput.value = getCurrentUtcOffset();
     }
 
     if (utcOffset === 0 || utcOffset === NaN) {
@@ -82,11 +87,10 @@ function clickConvertMillisToGMT() {
     }
     console.log('utcOffset', utcOffset);
     var formattedTime = convertMillisToGMT(timestamp, formatText, utcOffset);
-    var result = document.querySelector('.timestamp-datetime-result');
     result.innerHTML = formattedTime;
 }
 
-function clickConvertGMTToMillis() {
+function convertTimeToTimestamp() {
     var datetimeInput = document.querySelector('.datetime-timestamp-text');
     var datetimeText = String(datetimeInput.value);
     if (datetimeText.trim() === '') {
@@ -110,8 +114,9 @@ function bindingEvent(componentName, eventName, action) {
 }
 
 function app() {
-    bindingEvent('.timestamp-datetime-convert', 'click', clickConvertMillisToGMT);
-    bindingEvent('.datetime-timestamp-convert', 'click', clickConvertGMTToMillis);
+    bindingEvent('.timestamp-datetime-convert', 'click', convertTimestampToTime);
+    bindingEvent('.timestamp-datetime-content', 'input', convertTimestampToTime);
+    bindingEvent('.datetime-timestamp-convert', 'click', convertTimeToTimestamp);
     launchUpdateCurrentTime();
 }
 

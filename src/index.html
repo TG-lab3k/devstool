@@ -28,15 +28,16 @@
                 </div>
 
                 <div  class="app-content-pane">
-                    <div class="converter app-block">Convert to timestamp</div>
+                    <div class="block-label">Timestamp to date & time</div>
                     <div class="app-block">
                         <input class="flat-style-input timestamp-datetime-content" type="text" placeholder="Epoch in seconds or millis">
+                        <button class="flat-style-switch-button timestamp-datetime-unit">SECONDS</button>
                     </div>
                     <div class="app-block">
-                        <input class="flat-style-input timestamp-datetime-format" type="text" placeholder="Format">
+                        <input class="flat-style-input timestamp-datetime-format" type="text" placeholder="Pattern (YYYY-MM-DD HH:mm:ss)">
                     </div>
                     <div class="app-block">
-                        <input class="flat-style-input timestamp-datetime-timezones" list="timezones" placeholder="Time zone">
+                        <input class="flat-style-input timestamp-datetime-timezones" list="timezones" placeholder="Time zone (GMT+2)">
                         <datalist id="timezones">
                             <option value="GMT-12">(GMT-12:00)</option>
                             <option value="GMT-11">(GMT-11:00) Midway Island, Samoa</option>
@@ -124,22 +125,23 @@
                     </div>
                 </div>
 
-                <div  class="app-content-pane"
-                >
-                    <div class="app-block">Convert to timestamp</div>
-                    <div>
-                        <div class="app-block">
-                            <input class="flat-style-input datetime-timestamp-text" type="text" placeholder="Date & Time"> 
-                        </div>
-                        <div class="app-block">
-                            <input class="flat-style-input datetime-timestamp-format"  type="text" placeholder="Format">
-                        </div>
-                        <div class="app-block">
-                            <button class="flat-style-button datetime-timestamp-convert">Convert</button>
-                        </div>
+                <div  class="app-content-pane">
+                    <div class="block-label">Date & Time to timestamp</div>
+                    <div class="app-block">
+                        <input class="flat-style-input datetime-timestamp-text" type="text" placeholder="Date & Time"> 
                     </div>
                     <div class="app-block">
-                        <div class="datetime-timestamp-result app-display-result-board"></div>
+                        <input class="flat-style-input datetime-timestamp-format"  type="text" placeholder="Pattern (YYYY-MM-DD HH:mm:ss)">
+                    </div>
+                    <div class="app-block">
+                        <button class="flat-style-button datetime-timestamp-convert-seconds">Convert to seconds</button>
+                        <button class="flat-style-button datetime-timestamp-convert-millis">Convert to millis</button>
+                    </div>
+                    <div class="app-block">
+                        <div class="app-display-result-pane">
+                            <span class="app-display-result-board datetime-timestamp-result"></span>
+                            <span class="colored-link datetime-timestamp-result-unit"></span> 
+                        </div>
                     </div>
                 </div>
             </div>

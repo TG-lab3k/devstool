@@ -120,7 +120,7 @@ body.app .app-layout .app-center-pane{
 body.app .app-main-container{
     height:100%;
     padding-top: 40px;
-    padding-left: 60px;
+    padding-left: 120px;
 }
 
 body.app .app-main-container .app-content-pane {
@@ -128,7 +128,13 @@ body.app .app-main-container .app-content-pane {
 }
 
 body.app .app-main-container .app-block {
-    padding-top: 8px;
+    padding-top: 10px;
+}
+
+body.app .app-main-container .block-label {
+    font-size: 28px; 
+    height: 34px;
+    color:#fff
 }
 
 body.app .app-main-container .app-display-result-board {
@@ -165,13 +171,46 @@ body.app .app-main-container .app-main-pane .news-loader{
 input.flat-style-input {
   background-color:#000;
   border: none; 
-  border-bottom: 1px solid white; 
+  border-bottom: 1px solid #c2c4c9;
   padding: 5px; 
   color: white; 
-  width: 500px; 
+  width: 320px; 
 }
 
 input.flat-style-input:focus {
   outline: none; 
-  border-bottom-color:  white;
+  border-bottom-color:  #f8f9f9;
+}
+
+input.flat-style-input:hover {
+    outline: none; 
+    border-bottom-color:  #f8f9f9;
+}
+
+.flat-style-button{
+    background-color: #c2c4c9;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.flat-style-button:hover{
+    background-color: #f8f9f9;
+}
+
+.flat-style-switch-button {
+    background-color:#000;
+    border: none; 
+    padding-left: 10px;
+    padding-right: 30px;
+    color:rgba(43,205,238,.65)
+}
+
+.flat-style-switch-button:hover {
+    color:#2bcdee
 }

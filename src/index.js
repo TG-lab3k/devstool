@@ -5,6 +5,26 @@ const FORMAT_DEFAULT = 'YYYY-MM-DD HH:mm:ss';
 const FORMAT_WITH_MILLIS_DEFAULT = 'YYYY-MM-DD HH:mm:ss.SSS';
 const timestamp_Unit_SECONDS = 1;
 const timestamp_Unit_MILLIS = 2;
+import { initializeApp } from "firebase/app";
+import { getAnalytics,logEvent } from "firebase/analytics";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBOUPQrHb15-5BgI_Bcp6d8tUvPWtQL6bg",
+    authDomain: "devstool-14e07.firebaseapp.com",
+    projectId: "devstool-14e07",
+    storageBucket: "devstool-14e07.appspot.com",
+    messagingSenderId: "128673254801",
+    appId: "1:128673254801:web:8efb1a89470116a73c5e30",
+    measurementId: "G-ZTCD49ZXM4"
+  };
+  
+  // Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+const googleAnalytics = getAnalytics(firebaseApp);
+
+const logGAEvent = (eventName) => {
+    logEvent(googleAnalytics, eventName);
+}
 
 function updateCurrentTime(){
     var currentTimeSpan = document.querySelector('.current-timestamp');
@@ -72,10 +92,12 @@ function convertGMTToMillis(datetime, format) {
     return millis;
 }
 function convertSecondsToTime() {
+    logGAEvent('click_convertSecondsToDatetime');
     convertTimestampToDatetime(timestamp_Unit_SECONDS);
 }
 
 function convertMillisToTime() {
+    logGAEvent('click_convertMillisToDatetime');
     convertTimestampToDatetime(timestamp_Unit_MILLIS);
 }
 
@@ -156,10 +178,12 @@ function fillFormatTimezone() {
 }
 
 function convertTimeToTimestampSeconds() {
+    logGAEvent('click_convertDatetimeToTimestamp_seconds');
     convertDatetimeToTimestamp(timestamp_Unit_SECONDS);
 }
 
 function convertTimeToTimestampMillis() {
+    logGAEvent('click_convertDatetimeToTimestamp_millis');
     convertDatetimeToTimestamp(timestamp_Unit_MILLIS);
 }
 
